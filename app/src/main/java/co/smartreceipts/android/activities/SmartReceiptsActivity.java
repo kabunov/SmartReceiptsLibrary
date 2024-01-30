@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -261,12 +263,16 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
             // Check "Subscriptions" availability before enabling this menu item
             final boolean hideSubscriptions = !configurationManager.isEnabled(ConfigurableResourceFeature.SubscriptionModel);
 
-            MainMenuDialog dialog = MainMenuDialog.newInstance(
-                    new MainMenuDialogConfig(
-                            hideProSubscription, hideSettings, hideOcr, hideMyAccount, hideSubscriptions
-                    )
-            );
-            dialog.show(getSupportFragmentManager(), MainMenuDialog.TAG);
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            Fragment alreadyShownFragment = getSupportFragmentManager().findFragmentByTag(MainMenuDialog.TAG);
+            if (alreadyShownFragment == null) {
+                MainMenuDialog dialog = MainMenuDialog.newInstance(
+                        new MainMenuDialogConfig(
+                                hideProSubscription, hideSettings, hideOcr, hideMyAccount, hideSubscriptions
+                        )
+                );
+                dialog.show(fragmentTransaction, MainMenuDialog.TAG);
+            }
             return true;
         } else if (item.getItemId() == R.id.menu_main_search) {
             navigationHandler.navigateToSearchActivity();
