@@ -9,7 +9,7 @@ import co.smartreceipts.core.di.scopes.ApplicationScope;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(includes = {TooltipStorageModule.class,
+@Module(includes = {StorageModule.class,
         NetworkingModule.class,
         LocalRepositoryModule.class,
         SharedPreferencesModule.class,
