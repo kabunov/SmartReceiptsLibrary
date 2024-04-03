@@ -558,5 +558,16 @@
     <string name="subscriptions_success_details">План було успішно придбано</string>
     <string name="subscriptions_success_button">Продовжити</string>
 
+    <!-- ================== Paywall Fragment ==================== -->
+    <string name="paywall_header1">Спеціальна пропозиція:</string>
+    <string name="paywall_header2">Спробуйте Smart Receipts Plus безкоштовно на 7 днів</string>
+    <string name="paywall_reminder">Ми нагадаємо вам перед закінченням пробного періоду.</string>
+    <string name="paywall_subscription_free">7 днів безкоштовно!</string>
+    <string name="paywall_text1">Точне визначення для обліку витрат</string>
+    <string name="paywall_text2">Надійні резервні копії для захисту ваших даних</string>
+    <string name="paywall_text3">Без реклами - максимальний комфорт використання</string>
+    <string name="paywall_text4">Контролюйте формати та налаштування для експорту даних</string>
+    <string name="paywall_submit">Спробувати безкоштовно</string>
+
 </resources>
 

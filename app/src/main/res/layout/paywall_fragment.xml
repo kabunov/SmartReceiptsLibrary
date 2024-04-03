@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/violet">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/button_close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="@dimen/margin_large"
+            android:background="@drawable/shape_circle"
+            android:backgroundTint="@color/transparent_white_12"
+            android:padding="@dimen/padding_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@android:string/cancel"
+                android:src="@drawable/ic_round_close_24"
+                app:tint="#ffffff" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/text_header1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:paddingTop="@dimen/padding_normal"
+            android:text="@string/paywall_header1"
+            android:textColor="#FFBB4B"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_close" />
+
+        <TextView
+            android:id="@+id/text_header2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:text="@string/paywall_header2"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_header1" />
+
+        <TextView
+            android:id="@+id/text_reminder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginEnd="@dimen/margin_large"
+            android:drawablePadding="@dimen/padding_large"
+            android:text="@string/paywall_reminder"
+            android:textColor="#ffffff"
+            app:drawableStartCompat="@drawable/ic_paywall_reminder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_header2" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_large"
+            android:background="@drawable/bg_rounded_rectangle"
+            android:backgroundTint="#FFFFFF"
+            app:layout_constraintTop_toBottomOf="@id/text_reminder">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/card_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_normal"
+                android:background="@drawable/bg_rounded_rectangle"
+                android:backgroundTint="#F3F0FF"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/text_subscription_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:fontFamily="sans-serif-black"
+                    android:gravity="start"
+                    android:text="Smart Receipts Plus"
+                    android:textColor="#EE9B15"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/text_subscription_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:gravity="start"
+                    android:textColor="#0A0114"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/text_subscription_free"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/text_subscription_free"
+                    tools:text="123 THB" />
+
+                <TextView
+                    android:id="@+id/text_subscription_free"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:layout_marginBottom="@dimen/margin_normal"
+                    android:background="@drawable/bg_rounded_rectangle"
+                    android:backgroundTint="#1F45289F"
+                    android:gravity="start"
+                    android:paddingHorizontal="@dimen/padding_normal"
+                    android:paddingVertical="@dimen/padding_small"
+                    android:text="@string/paywall_subscription_free"
+                    android:textColor="#45289F"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/text_subscription_price"
+                    app:layout_constraintTop_toBottomOf="@id/text_subscription_title" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_large"
+                android:drawablePadding="@dimen/padding_normal"
+                android:text="@string/paywall_text1"
+                android:textColor="#0A0114"
+                android:textSize="14sp"
+                app:drawableStartCompat="@drawable/ic_paywall_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_price" />
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_large"
+                android:drawablePadding="@dimen/padding_normal"
+                android:text="@string/paywall_text2"
+                android:textColor="#0A0114"
+                android:textSize="14sp"
+                app:drawableStartCompat="@drawable/ic_paywall_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text1" />
+
+            <TextView
+                android:id="@+id/text3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_large"
+                android:drawablePadding="@dimen/padding_normal"
+                android:text="@string/paywall_text3"
+                android:textColor="#0A0114"
+                android:textSize="14sp"
+                app:drawableStartCompat="@drawable/ic_paywall_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text2" />
+
+            <TextView
+                android:id="@+id/text4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_large"
+                android:drawablePadding="@dimen/padding_normal"
+                android:text="@string/paywall_text4"
+                android:textColor="#0A0114"
+                android:textSize="14sp"
+                app:drawableStartCompat="@drawable/ic_paywall_item"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text3" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_submit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_large"
+                android:layout_marginBottom="@dimen/margin_normal"
+                android:backgroundTint="@color/violet"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:paddingVertical="@dimen/padding_large"
+                android:text="@string/paywall_submit"
+                android:textColor="#ffffff"
+                app:cornerRadius="@dimen/card_corner_radius"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text4" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--        <ProgressBar-->
+<!--            android:id="@+id/progress"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:indeterminateTint="@android:color/white"-->
+<!--            android:visibility="gone"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/card_standard"-->
+<!--            tools:visibility="visible" />-->
+
+        <include
+            android:id="@+id/success"
+            layout="@layout/subscriptions_success"
+            android:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

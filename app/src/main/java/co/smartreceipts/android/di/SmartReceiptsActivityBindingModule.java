@@ -14,6 +14,8 @@ import co.smartreceipts.android.ocr.widget.configuration.OcrConfigurationFragmen
 import co.smartreceipts.android.ocr.widget.di.OcrConfigurationModule;
 import co.smartreceipts.android.ocr.widget.tooltip.ReceiptCreateEditFragmentTooltipFragment;
 import co.smartreceipts.android.ocr.widget.tooltip.di.ReceiptCreateEditFragmentTooltipFragmentModule;
+import co.smartreceipts.android.paywall.PaywallFragment;
+import co.smartreceipts.android.paywall.di.PaywallModule;
 import co.smartreceipts.android.receipts.ReceiptsListFragment;
 import co.smartreceipts.android.receipts.delete.DeleteReceiptDialogFragment;
 import co.smartreceipts.android.receipts.di.ReceiptsListModule;
@@ -136,5 +138,9 @@ public abstract class SmartReceiptsActivityBindingModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = GraphsViewModule.class)
     public abstract GraphsFragment graphsFragment();
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = PaywallModule.class)
+    public abstract PaywallFragment paywallFragment();
 
 }
