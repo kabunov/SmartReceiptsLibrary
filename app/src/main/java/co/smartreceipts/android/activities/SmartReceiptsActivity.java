@@ -36,6 +36,7 @@ import co.smartreceipts.android.imports.intents.widget.info.IntentImportInformat
 import co.smartreceipts.android.imports.intents.widget.info.IntentImportInformationView;
 import co.smartreceipts.android.model.Receipt;
 import co.smartreceipts.android.model.Trip;
+import co.smartreceipts.android.paywall.PaywallManager;
 import co.smartreceipts.android.persistence.PersistenceManager;
 import co.smartreceipts.android.purchases.PurchaseEventsListener;
 import co.smartreceipts.android.purchases.PurchaseManager;
@@ -109,6 +110,9 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
 
     @Inject
     IdentityManager identityManager;
+
+    @Inject
+    PaywallManager paywallManager;
 
     private volatile Set<InAppPurchase> availablePurchases;
     private CompositeDisposable compositeDisposable;
@@ -225,11 +229,24 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
             } else {
                 throw new IllegalStateException("Unexpected search result type: " + searchResult.getClass());
             }
+            return;
         }
 
         if (loginRequested) {
             loginRequested = false;
             navigationHandler.navigateToLoginScreen();
+            return;
+        }
+
+        boolean alreadySubscribed = purchaseWallet.hasActivePurchase(InAppPurchase.SmartReceiptsPlus)
+                || purchaseWallet.hasActivePurchase(InAppPurchase.StandardSubscriptionPlan)
+                || purchaseWallet.hasActivePurchase(InAppPurchase.PremiumSubscriptionPlan)
+                || purchaseWallet.hasActivePurchase(InAppPurchase.StandardSubscriptionTrialPlan);
+        if (paywallManager.isPaywallCanBeShown()
+                && configurationManager.isEnabled(ConfigurableResourceFeature.SubscriptionModel)
+                && !alreadySubscribed) {
+            paywallManager.setPaywallShown();
+            navigationHandler.navigateToPaywallScreen();
         }
     }
 

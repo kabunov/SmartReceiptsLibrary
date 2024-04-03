@@ -571,4 +571,15 @@
     <string name="subscriptions_success_details">התוכנית נרכשה בהצלחה</string>
     <string name="subscriptions_success_button">המשך</string>
 
+    <!-- ================== Paywall Fragment ==================== -->
+    <string name="paywall_header1">הצעה מיוחדת:</string>
+    <string name="paywall_header2">נסו את Smart Receipts Plus בחינם למשך 7 ימים</string>
+    <string name="paywall_reminder">נזכיר לך לפני שהתם תקופת הניסוי.</string>
+    <string name="paywall_subscription_free">7 ימים בחינם!</string>
+    <string name="paywall_text1">זיהוי מדויק למעקב אחר הוצאות</string>
+    <string name="paywall_text2">גיבויים בטוחים להגנה על הנתונים שלך</string>
+    <string name="paywall_text3">ללא פרסומות - נוחות מרבית בשימוש</string>
+    <string name="paywall_text4">שליטה בתבניות ובהגדרות לייצוא הנתונים</string>
+    <string name="paywall_submit">נסה בחינם</string>
+
 </resources>

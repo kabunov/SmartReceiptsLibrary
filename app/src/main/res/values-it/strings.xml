@@ -572,4 +572,15 @@
     <string name="subscriptions_success_details">Il piano è stato acquistato con successo</string>
     <string name="subscriptions_success_button">Continua</string>
 
+    <!-- ================== Paywall Fragment ==================== -->
+    <string name="paywall_header1">Offerta Speciale:</string>
+    <string name="paywall_header2">Prova Smart Receipts Plus gratuitamente per 7 giorni</string>
+    <string name="paywall_reminder">Ti ricorderemo prima che finisca il periodo di prova.</string>
+    <string name="paywall_subscription_free">7 giorni gratis!</string>
+    <string name="paywall_text1">Riconoscimento preciso per il tracciamento delle spese</string>
+    <string name="paywall_text2">Backup sicuri per proteggere i tuoi dati</string>
+    <string name="paywall_text3">Senza pubblicità - massimo comfort d\'uso</string>
+    <string name="paywall_text4">Controlla formati e impostazioni per l\'esportazione dei dati</string>
+    <string name="paywall_submit">Prova Gratis</string>
+
 </resources>

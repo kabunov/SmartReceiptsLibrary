@@ -341,6 +341,14 @@ class NavigationHandler<T : FragmentActivity> @Inject constructor(
         }
     }
 
+    fun navigateToPaywallScreen() {
+        if (isDualPane) {
+            replaceFragment(fragmentProvider.newPaywallFragment(), R.id.content_details)
+        } else {
+            replaceFragment(fragmentProvider.newPaywallFragment(), R.id.content_list)
+        }
+    }
+
     private fun replaceFragment(fragment: Fragment, @IdRes layoutResId: Int) {
         replaceFragmentWithAnimation(fragment, layoutResId, MISSING_RES_ID, MISSING_RES_ID)
     }

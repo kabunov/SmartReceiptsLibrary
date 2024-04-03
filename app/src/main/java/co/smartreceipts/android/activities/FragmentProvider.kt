@@ -13,6 +13,7 @@ import co.smartreceipts.android.model.Receipt
 import co.smartreceipts.android.model.Trip
 import co.smartreceipts.android.ocr.apis.model.OcrResponse
 import co.smartreceipts.android.ocr.widget.configuration.OcrConfigurationFragment
+import co.smartreceipts.android.paywall.PaywallFragment
 import co.smartreceipts.android.receipts.editor.ReceiptCreateEditFragment
 import co.smartreceipts.android.receipts.editor.ReceiptCreateEditFragment.ARG_FILE
 import co.smartreceipts.android.receipts.editor.ReceiptCreateEditFragment.ARG_OCR
@@ -172,6 +173,15 @@ class FragmentProvider @Inject constructor() {
         val args = Bundle()
         args.putParcelable(Trip.PARCEL_KEY, tripToEdit)
         return attachArguments(TripCreateEditFragment.newInstance(), args)
+    }
+
+    /**
+     * Creates a [PaywallFragment] instance
+     *
+     * @return a new instance of this fragment
+     */
+    fun newPaywallFragment(): PaywallFragment {
+        return PaywallFragment.newInstance()
     }
 
     private fun <T : Fragment> attachArguments(fragment: T, args: Bundle): T {
