@@ -34,6 +34,8 @@ enum class InAppPurchase(
     StandardSubscriptionPlan(Subscription::class.java, "and_autorec_1month", PurchaseFamily.SubscriptionPlans),
     PremiumSubscriptionPlan(Subscription::class.java, "and_autorec_pro_1month", PurchaseFamily.SubscriptionPlans),
 
+    StandardSubscriptionTrialPlan(Subscription::class.java, "and_autorec_1month_trial7", PurchaseFamily.SubscriptionPlans),
+
     /**
      * A test only [ConsumablePurchase] for testing without a particular [PurchaseFamily]
      */
