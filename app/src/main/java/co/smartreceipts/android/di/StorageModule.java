@@ -1,6 +1,8 @@
 package co.smartreceipts.android.di;
 
 
+import co.smartreceipts.android.paywall.data.PaywallPreferencesStorage;
+import co.smartreceipts.android.paywall.data.PaywallStorage;
 import co.smartreceipts.core.di.scopes.ApplicationScope;
 import co.smartreceipts.android.rating.data.AppRatingPreferencesStorage;
 import co.smartreceipts.android.rating.data.AppRatingStorage;
@@ -12,7 +14,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class TooltipStorageModule {
+public class StorageModule {
 
     @Provides
     @ApplicationScope
@@ -29,6 +31,12 @@ public class TooltipStorageModule {
     @Provides
     @ApplicationScope
     public static AppRatingStorage provideAppRatingStorage(AppRatingPreferencesStorage storage) {
+        return storage;
+    }
+
+    @Provides
+    @ApplicationScope
+    public static PaywallStorage providePaywallStorage(PaywallPreferencesStorage storage) {
         return storage;
     }
 

@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 
 import javax.inject.Named;
 
+import co.smartreceipts.android.paywall.data.PaywallPreferencesStorage;
 import co.smartreceipts.core.di.scopes.ApplicationScope;
 import co.smartreceipts.android.persistence.database.tables.ordering.OrderingPreferencesManager;
 import co.smartreceipts.android.rating.data.AppRatingPreferencesStorage;
@@ -41,6 +42,13 @@ public class SharedPreferencesModule {
     @Named(AppRatingPreferencesStorage.RATING_PREFERENCES)
     public static SharedPreferences providesAppRatingPreferences(Context context) {
         return context.getSharedPreferences(AppRatingPreferencesStorage.RATING_PREFERENCES, Context.MODE_PRIVATE);
+    }
+
+    @Provides
+    @ApplicationScope
+    @Named(PaywallPreferencesStorage.PAYWALL_PREFERENCES)
+    public static SharedPreferences providesPaywallPreferences(Context context) {
+        return context.getSharedPreferences(PaywallPreferencesStorage.PAYWALL_PREFERENCES, Context.MODE_PRIVATE);
     }
 
 }
