@@ -123,7 +123,6 @@ class LoginFragment : WBFragment(), LoginView {
             when (arguments?.getSerializableCompat<LoginSourceDestination>(LOGIN_SOURCE_DESTINATION)) {
                 LoginSourceDestination.OCR -> router.navigateToOcrConfigurationFragment()
                 LoginSourceDestination.SUBSCRIPTIONS -> router.navigateToSubscriptionsActivity()
-                LoginSourceDestination.PAYWALL -> router.navigateToPaywallScreen()
                 else -> {}
             }
         }
