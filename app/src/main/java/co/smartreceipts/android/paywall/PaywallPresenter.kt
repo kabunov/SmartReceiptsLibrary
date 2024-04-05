@@ -30,8 +30,11 @@ class PaywallPresenter @Inject constructor(view: PaywallView, interactor: Paywal
 
         compositeDisposable.add(
             view.submitButtonClicks
-                .doOnNext { interactor.startPurchase() }
-                .subscribe { }
+                .subscribe {
+                    Logger.debug(this, "[trial] Submit clicked")
+                    view.presentLoading()
+                    interactor.startPurchase()
+                }
         )
     }
 

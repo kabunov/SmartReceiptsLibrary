@@ -72,14 +72,18 @@ class PaywallFragment : Fragment(), PaywallView {
         }
     }
 
+    override fun presentLoading() {
+        binding.progress.isVisible = true
+    }
+
     override fun presentSuccessSubscription() {
         Logger.debug(this, "presentSuccessSubscription")
-//        binding.progress.isVisible = false
+        binding.progress.isVisible = false
         binding.success.root.isVisible = true
     }
 
     override fun presentFailedSubscription() {
-//        binding.progress.isVisible = false
+        binding.progress.isVisible = false
         Toast.makeText(requireContext(), R.string.purchase_failed, Toast.LENGTH_LONG).show()
     }
 

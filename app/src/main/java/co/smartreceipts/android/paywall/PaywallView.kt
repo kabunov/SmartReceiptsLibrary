@@ -9,6 +9,8 @@ interface PaywallView {
 
     val submitButtonClicks: Observable<Unit>
 
+    fun presentLoading()
+
     fun presentSuccessSubscription()
 
     fun presentFailedSubscription()
