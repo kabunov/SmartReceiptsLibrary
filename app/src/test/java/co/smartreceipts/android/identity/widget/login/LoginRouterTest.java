@@ -32,4 +32,21 @@ public class LoginRouterTest {
         verify(navigationHandler).navigateBack();
     }
 
+    @Test
+    public void navigateToOcrConfigurationFragment() {
+        router.navigateToOcrConfigurationFragment();
+        verify(navigationHandler).navigateToOcrConfigurationFragment();
+    }
+
+    @Test
+    public void navigateToSubscriptionsActivity() {
+        router.navigateToSubscriptionsActivity();
+        verify(navigationHandler).navigateToSubscriptionsActivity();
+    }
+
+    @Test
+    public void navigateToPaywallScreen() {
+        router.navigateToPaywallScreen();
+        verify(navigationHandler).navigateToPaywallScreen();
+    }
 }

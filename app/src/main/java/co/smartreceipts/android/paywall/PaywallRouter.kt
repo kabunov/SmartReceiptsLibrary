@@ -10,7 +10,7 @@ import javax.inject.Inject
 class PaywallRouter @Inject constructor(private val navigationHandler: NavigationHandler<SmartReceiptsActivity>) {
 
     fun navigateBack(): Boolean {
-        return this.navigationHandler.navigateBack()
+        return navigationHandler.navigateBack()
     }
 
     fun navigateToLoginScreen() {
