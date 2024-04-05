@@ -1,22 +1,26 @@
-package co.smartreceipts.android.identity.widget.login;
+package co.smartreceipts.android.identity.widget.login
 
-import javax.inject.Inject;
-
-import co.smartreceipts.android.activities.NavigationHandler;
-import co.smartreceipts.core.di.scopes.FragmentScope;
+import co.smartreceipts.android.activities.NavigationHandler
+import co.smartreceipts.android.activities.SmartReceiptsActivity
+import co.smartreceipts.core.di.scopes.FragmentScope
+import javax.inject.Inject
 
 @FragmentScope
-public class LoginRouter {
+class LoginRouter @Inject constructor(private val navigationHandler: NavigationHandler<SmartReceiptsActivity>) {
 
-    @Inject
-    NavigationHandler navigationHandler;
-
-    @Inject
-    public LoginRouter() {
-
+    fun navigateBack(): Boolean {
+        return navigationHandler.navigateBack()
     }
 
-    public boolean navigateBack() {
-        return this.navigationHandler.navigateBack();
+    fun navigateToOcrConfigurationFragment() {
+        navigationHandler.navigateToOcrConfigurationFragment()
+    }
+
+    fun navigateToSubscriptionsActivity() {
+        navigationHandler.navigateToSubscriptionsActivity()
+    }
+
+    fun navigateToPaywallScreen() {
+        navigationHandler.navigateToPaywallScreen()
     }
 }

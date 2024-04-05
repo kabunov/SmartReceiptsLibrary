@@ -120,12 +120,10 @@ class LoginFragment : WBFragment(), LoginView {
         }
         if (uiIndicator.state == UiIndicator.State.Success) {
             router.navigateBack()
-            val loginSourceDestination =
-                arguments?.getSerializableCompat<LoginSourceDestination>(LOGIN_SOURCE_DESTINATION)
-            when (loginSourceDestination) {
-                LoginSourceDestination.OCR -> router.navigationHandler.navigateToOcrConfigurationFragment()
-                LoginSourceDestination.SUBSCRIPTIONS -> router.navigationHandler.navigateToSubscriptionsActivity()
-                LoginSourceDestination.PAYWALL -> router.navigationHandler.navigateToPaywallScreen()
+            when (arguments?.getSerializableCompat<LoginSourceDestination>(LOGIN_SOURCE_DESTINATION)) {
+                LoginSourceDestination.OCR -> router.navigateToOcrConfigurationFragment()
+                LoginSourceDestination.SUBSCRIPTIONS -> router.navigateToSubscriptionsActivity()
+                LoginSourceDestination.PAYWALL -> router.navigateToPaywallScreen()
                 else -> {}
             }
         }
