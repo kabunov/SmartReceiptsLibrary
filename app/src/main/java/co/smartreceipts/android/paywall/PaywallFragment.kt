@@ -11,8 +11,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import co.smartreceipts.analytics.log.Logger
 import co.smartreceipts.android.R
-import co.smartreceipts.android.activities.NavigationHandler
-import co.smartreceipts.android.activities.SmartReceiptsActivity
 import co.smartreceipts.android.databinding.PaywallFragmentBinding
 import com.jakewharton.rxbinding3.view.clicks
 import dagger.android.support.AndroidSupportInjection
@@ -26,7 +24,7 @@ class PaywallFragment : Fragment(), PaywallView {
     lateinit var presenter: PaywallPresenter
 
     @Inject
-    lateinit var navigationHandler: NavigationHandler<SmartReceiptsActivity>
+    lateinit var router: PaywallRouter
 
     private var _binding: PaywallFragmentBinding? = null
     private val binding get() = _binding!!
@@ -44,11 +42,11 @@ class PaywallFragment : Fragment(), PaywallView {
         binding.textSubscriptionPrice.paintFlags = binding.textSubscriptionPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
         binding.buttonClose.setOnClickListener {
-            navigationHandler.navigateBack()
+            router.navigateBack()
         }
 
-        binding.success.buttonContinue.setOnClickListener {  navigationHandler.navigateBack() }
-        binding.success.buttonClose.setOnClickListener {  navigationHandler.navigateBack() }
+        binding.success.buttonContinue.setOnClickListener {  router.navigateBack() }
+        binding.success.buttonClose.setOnClickListener {  router.navigateBack() }
 
         return binding.root
     }
@@ -70,6 +68,10 @@ class PaywallFragment : Fragment(), PaywallView {
                 binding.textSubscriptionPrice.text = price
             }
         }
+    }
+
+    override fun navigateToLogin() {
+        router.navigateToLoginScreen()
     }
 
     override fun presentLoading() {

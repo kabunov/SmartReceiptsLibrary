@@ -125,6 +125,7 @@ class LoginFragment : WBFragment(), LoginView {
             when (loginSourceDestination) {
                 LoginSourceDestination.OCR -> router.navigationHandler.navigateToOcrConfigurationFragment()
                 LoginSourceDestination.SUBSCRIPTIONS -> router.navigationHandler.navigateToSubscriptionsActivity()
+                LoginSourceDestination.PAYWALL -> router.navigationHandler.navigateToPaywallScreen()
                 else -> {}
             }
         }
