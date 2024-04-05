@@ -1,9 +1,9 @@
-package co.smartreceipts.android.paywall
+package co.smartreceipts.android.trial
 
 import io.reactivex.Observable
 import io.reactivex.functions.Consumer
 
-interface PaywallView {
+interface TrialView {
 
     fun presentPurchasePrice(): Consumer<in String?>
 

@@ -1,4 +1,4 @@
-package co.smartreceipts.android.paywall
+package co.smartreceipts.android.trial
 
 import co.smartreceipts.analytics.log.Logger
 import co.smartreceipts.android.purchases.PurchaseEventsListener
@@ -11,12 +11,12 @@ import co.smartreceipts.core.identity.IdentityManager
 import javax.inject.Inject
 
 @FragmentScope
-class PaywallPresenter @Inject constructor(
-    view: PaywallView,
-    interactor: PaywallInteractor,
+class TrialPresenter @Inject constructor(
+    view: TrialView,
+    interactor: TrialInteractor,
     private val identityManager: IdentityManager,
 ) :
-    BaseViperPresenter<PaywallView, PaywallInteractor>(view, interactor),
+    BaseViperPresenter<TrialView, TrialInteractor>(view, interactor),
     PurchaseEventsListener {
 
     override fun subscribe() {

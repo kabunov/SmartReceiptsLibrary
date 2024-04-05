@@ -20,7 +20,7 @@ class LoginRouter @Inject constructor(private val navigationHandler: NavigationH
         navigationHandler.navigateToSubscriptionsActivity()
     }
 
-    fun navigateToPaywallScreen() {
-        navigationHandler.navigateToPaywallScreen()
+    fun navigateToTrialScreen() {
+        navigationHandler.navigateToTrialScreen()
     }
 }

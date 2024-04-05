@@ -1,4 +1,4 @@
-package co.smartreceipts.android.paywall
+package co.smartreceipts.android.trial
 
 import android.content.Context
 import android.graphics.Paint
@@ -11,22 +11,22 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import co.smartreceipts.analytics.log.Logger
 import co.smartreceipts.android.R
-import co.smartreceipts.android.databinding.PaywallFragmentBinding
+import co.smartreceipts.android.databinding.TrialFragmentBinding
 import com.jakewharton.rxbinding3.view.clicks
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.Observable
 import io.reactivex.functions.Consumer
 import javax.inject.Inject
 
-class PaywallFragment : Fragment(), PaywallView {
+class TrialFragment : Fragment(), TrialView {
 
     @Inject
-    lateinit var presenter: PaywallPresenter
+    lateinit var presenter: TrialPresenter
 
     @Inject
-    lateinit var router: PaywallRouter
+    lateinit var router: TrialRouter
 
-    private var _binding: PaywallFragmentBinding? = null
+    private var _binding: TrialFragmentBinding? = null
     private val binding get() = _binding!!
 
     override val submitButtonClicks: Observable<Unit> get() = binding.buttonSubmit.clicks()
@@ -37,16 +37,17 @@ class PaywallFragment : Fragment(), PaywallView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = PaywallFragmentBinding.inflate(inflater, container, false)
+        _binding = TrialFragmentBinding.inflate(inflater, container, false)
 
-        binding.textSubscriptionPrice.paintFlags = binding.textSubscriptionPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        binding.textSubscriptionPrice.paintFlags =
+            binding.textSubscriptionPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
         binding.buttonClose.setOnClickListener {
             router.navigateBack()
         }
 
-        binding.success.buttonContinue.setOnClickListener {  router.navigateBack() }
-        binding.success.buttonClose.setOnClickListener {  router.navigateBack() }
+        binding.success.buttonContinue.setOnClickListener { router.navigateBack() }
+        binding.success.buttonClose.setOnClickListener { router.navigateBack() }
 
         return binding.root
     }
@@ -91,7 +92,7 @@ class PaywallFragment : Fragment(), PaywallView {
 
     companion object {
         @JvmStatic
-        fun newInstance() = PaywallFragment()
+        fun newInstance() = TrialFragment()
     }
 
 }

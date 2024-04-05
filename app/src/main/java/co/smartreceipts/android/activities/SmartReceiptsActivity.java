@@ -36,7 +36,6 @@ import co.smartreceipts.android.imports.intents.widget.info.IntentImportInformat
 import co.smartreceipts.android.imports.intents.widget.info.IntentImportInformationView;
 import co.smartreceipts.android.model.Receipt;
 import co.smartreceipts.android.model.Trip;
-import co.smartreceipts.android.paywall.PaywallManager;
 import co.smartreceipts.android.persistence.PersistenceManager;
 import co.smartreceipts.android.purchases.PurchaseEventsListener;
 import co.smartreceipts.android.purchases.PurchaseManager;
@@ -52,6 +51,7 @@ import co.smartreceipts.android.settings.catalog.UserPreference;
 import co.smartreceipts.android.settings.widget.SettingsActivity;
 import co.smartreceipts.android.subscriptions.SubscriptionsActivity;
 import co.smartreceipts.android.sync.BackupProvidersManager;
+import co.smartreceipts.android.trial.TrialManager;
 import co.smartreceipts.android.utils.ConfigurableResourceFeature;
 import co.smartreceipts.core.identity.IdentityManager;
 import dagger.android.AndroidInjection;
@@ -112,7 +112,7 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
     IdentityManager identityManager;
 
     @Inject
-    PaywallManager paywallManager;
+    TrialManager trialManager;
 
     private volatile Set<InAppPurchase> availablePurchases;
     private CompositeDisposable compositeDisposable;
@@ -242,11 +242,11 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
                 || purchaseWallet.hasActivePurchase(InAppPurchase.StandardSubscriptionPlan)
                 || purchaseWallet.hasActivePurchase(InAppPurchase.PremiumSubscriptionPlan)
                 || purchaseWallet.hasActivePurchase(InAppPurchase.StandardSubscriptionTrialPlan);
-        if (paywallManager.isPaywallCanBeShown()
+        if (trialManager.isTrialCanBeShown()
                 && configurationManager.isEnabled(ConfigurableResourceFeature.SubscriptionModel)
                 && !alreadySubscribed) {
-            paywallManager.setPaywallShown();
-            navigationHandler.navigateToPaywallScreen();
+            trialManager.setTrialShown();
+            navigationHandler.navigateToTrialScreen();
         }
     }
 

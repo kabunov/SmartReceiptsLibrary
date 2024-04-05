@@ -11,5 +11,5 @@ enum class PurchaseSource {
     Remote,
     Unknown,
     SubscriptionsScreen,
-    Paywall,
+    Trial,
 }

@@ -562,15 +562,15 @@
     <string name="subscriptions_success_details">Planen ble kjøpt vellykket</string>
     <string name="subscriptions_success_button">Fortsett</string>
 
-    <!-- ================== Paywall Fragment ==================== -->
-    <string name="paywall_header1">Spesialtilbud:</string>
-    <string name="paywall_header2">Prøv Smart Receipts Plus gratis i 7 dager</string>
-    <string name="paywall_reminder">Vi vil minne deg på før prøveperioden avsluttes.</string>
-    <string name="paywall_subscription_free">7 dager gratis!</string>
-    <string name="paywall_text1">Nøyaktig gjenkjenning for utgiftssporing</string>
-    <string name="paywall_text2">Sikre sikkerhetskopier for å beskytte dataene dine</string>
-    <string name="paywall_text3">Uten annonsering - maksimal brukerkomfort</string>
-    <string name="paywall_text4">Kontroller formater og innstillinger for dataeksport</string>
-    <string name="paywall_submit">Prøv gratis</string>
+    <!-- ================== Trial Fragment ==================== -->
+    <string name="trial_header1">Spesialtilbud:</string>
+    <string name="trial_header2">Prøv Smart Receipts Plus gratis i 7 dager</string>
+    <string name="trial_reminder">Vi vil minne deg på før prøveperioden avsluttes.</string>
+    <string name="trial_subscription_free">7 dager gratis!</string>
+    <string name="trial_text1">Nøyaktig gjenkjenning for utgiftssporing</string>
+    <string name="trial_text2">Sikre sikkerhetskopier for å beskytte dataene dine</string>
+    <string name="trial_text3">Uten annonsering - maksimal brukerkomfort</string>
+    <string name="trial_text4">Kontroller formater og innstillinger for dataeksport</string>
+    <string name="trial_submit">Prøv gratis</string>
 
 </resources>

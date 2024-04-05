@@ -1,15 +1,15 @@
 package co.smartreceipts.android.di;
 
 
-import co.smartreceipts.android.paywall.data.PaywallPreferencesStorage;
-import co.smartreceipts.android.paywall.data.PaywallStorage;
-import co.smartreceipts.core.di.scopes.ApplicationScope;
 import co.smartreceipts.android.rating.data.AppRatingPreferencesStorage;
 import co.smartreceipts.android.rating.data.AppRatingStorage;
+import co.smartreceipts.android.trial.data.TrialPreferencesStorage;
+import co.smartreceipts.android.trial.data.TrialStorage;
 import co.smartreceipts.android.widget.tooltip.report.backup.data.BackupReminderPreferencesStorage;
 import co.smartreceipts.android.widget.tooltip.report.backup.data.BackupReminderTooltipStorage;
 import co.smartreceipts.android.widget.tooltip.report.generate.data.GenerateInfoTooltipPreferencesStorage;
 import co.smartreceipts.android.widget.tooltip.report.generate.data.GenerateInfoTooltipStorage;
+import co.smartreceipts.core.di.scopes.ApplicationScope;
 import dagger.Module;
 import dagger.Provides;
 
@@ -36,7 +36,7 @@ public class StorageModule {
 
     @Provides
     @ApplicationScope
-    public static PaywallStorage providePaywallStorage(PaywallPreferencesStorage storage) {
+    public static TrialStorage provideTrialStorage(TrialPreferencesStorage storage) {
         return storage;
     }
 

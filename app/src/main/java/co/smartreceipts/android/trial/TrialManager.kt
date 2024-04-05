@@ -1,14 +1,14 @@
-package co.smartreceipts.android.paywall
+package co.smartreceipts.android.trial
 
-import co.smartreceipts.android.paywall.data.PaywallStorage
+import co.smartreceipts.android.trial.data.TrialStorage
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class PaywallManager @Inject constructor(
-    private val paywallStorage: PaywallStorage,
+class TrialManager @Inject constructor(
+    private val trialStorage: TrialStorage,
 ) {
-    fun isPaywallCanBeShown(): Boolean {
-        val getLastShownDate = paywallStorage.getLastShownDate()
+    fun isTrialCanBeShown(): Boolean {
+        val getLastShownDate = trialStorage.getLastShownDate()
         if (getLastShownDate < 0) {
             return true
         }
@@ -18,8 +18,8 @@ class PaywallManager @Inject constructor(
         return diffInDays >= DAYS_UNTIL_PROMPT
     }
 
-    fun setPaywallShown() {
-        paywallStorage.setLastShownDate()
+    fun setTrialShown() {
+        trialStorage.setLastShownDate()
     }
 
     private companion object {
