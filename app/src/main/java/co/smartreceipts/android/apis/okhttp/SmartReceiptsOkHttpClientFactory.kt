@@ -14,15 +14,17 @@ import okhttp3.logging.HttpLoggingInterceptor
  * allow easy integration with Dagger's Lazy function so that our call to [Context.getCacheDir] can
  * be performed in the background
  */
-class SmartReceiptsOkHttpClientFactory(private val context: Context,
-                                       private val identityStore: IdentityStore
+class SmartReceiptsOkHttpClientFactory(
+    private val context: Context,
+    private val identityStore: IdentityStore
 ) {
 
 
-    fun newInstance() : OkHttpClient {
+    fun newInstance(): OkHttpClient {
         val okHttpClientBuilder = OkHttpClient.Builder()
-        okHttpClientBuilder.addInterceptor(SmartReceiptsAuthenticatedRequestInterceptor(identityStore))
-        okHttpClientBuilder.addInterceptor(TrafficStatsRequestInterceptor())
+            .addInterceptor(SmartReceiptsAuthenticatedRequestInterceptor(identityStore))
+            .addInterceptor(TrafficStatsRequestInterceptor())
+            .addInterceptor(UserAgentInterceptor())
         if (BuildConfig.DEBUG) {
             // If we're using a debug build, add logging
             val loggingInterceptor = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
