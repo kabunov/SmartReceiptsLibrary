@@ -396,4 +396,5 @@ class NavigationHandler<T : FragmentActivity> @Inject constructor(
 enum class LoginSourceDestination {
     OCR,
     SUBSCRIPTIONS,
+    PAYWALL,
 }

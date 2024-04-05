@@ -7,10 +7,15 @@ import co.smartreceipts.android.purchases.source.PurchaseSource
 import co.smartreceipts.android.purchases.subscriptionFormattedPrice
 import co.smartreceipts.android.widget.viper.BaseViperPresenter
 import co.smartreceipts.core.di.scopes.FragmentScope
+import co.smartreceipts.core.identity.IdentityManager
 import javax.inject.Inject
 
 @FragmentScope
-class PaywallPresenter @Inject constructor(view: PaywallView, interactor: PaywallInteractor) :
+class PaywallPresenter @Inject constructor(
+    view: PaywallView,
+    interactor: PaywallInteractor,
+    private val identityManager: IdentityManager,
+) :
     BaseViperPresenter<PaywallView, PaywallInteractor>(view, interactor),
     PurchaseEventsListener {
 
@@ -31,9 +36,15 @@ class PaywallPresenter @Inject constructor(view: PaywallView, interactor: Paywal
         compositeDisposable.add(
             view.submitButtonClicks
                 .subscribe {
-                    Logger.debug(this, "[trial] Submit clicked")
-                    view.presentLoading()
-                    interactor.startPurchase()
+                    Logger.debug(this, "[trial] Submit clicked, isLoggedIn = ${identityManager.isLoggedIn}")
+                    when {
+                        identityManager.isLoggedIn -> {
+                            view.presentLoading()
+                            interactor.startPurchase()
+                        }
+
+                        else -> view.navigateToLogin()
+                    }
                 }
         )
     }
