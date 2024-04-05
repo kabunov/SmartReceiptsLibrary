@@ -338,7 +338,7 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
                 Toast.makeText(SmartReceiptsActivity.this, R.string.purchase_succeeded, Toast.LENGTH_LONG).show();
             }
 
-            if (InAppPurchase.SmartReceiptsPlus == inAppPurchase) {
+            if (InAppPurchase.SmartReceiptsPlus == inAppPurchase || InAppPurchase.StandardSubscriptionTrialPlan == inAppPurchase) {
                 adPresenter.onSuccessPlusPurchase();
             }
         });
