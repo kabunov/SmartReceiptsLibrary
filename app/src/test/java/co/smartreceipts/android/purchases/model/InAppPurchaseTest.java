@@ -56,7 +56,7 @@ public class InAppPurchaseTest {
 
     @Test
     public void getSubscriptionSkus() {
-        final List<String> purchases = Arrays.asList("plus_sku_4", "and_autorec_1month", "and_autorec_pro_1month");
+        final List<String> purchases = Arrays.asList("plus_sku_4", "and_autorec_1month", "and_autorec_pro_1month", "and_autorec_1month_trial7");
         assertEquals(InAppPurchase.getSubscriptionSkus(), purchases);
     }
 
