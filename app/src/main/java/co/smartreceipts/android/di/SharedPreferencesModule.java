@@ -6,11 +6,11 @@ import android.preference.PreferenceManager;
 
 import javax.inject.Named;
 
-import co.smartreceipts.android.paywall.data.PaywallPreferencesStorage;
-import co.smartreceipts.core.di.scopes.ApplicationScope;
 import co.smartreceipts.android.persistence.database.tables.ordering.OrderingPreferencesManager;
 import co.smartreceipts.android.rating.data.AppRatingPreferencesStorage;
 import co.smartreceipts.android.settings.UserPreferenceManager;
+import co.smartreceipts.android.trial.data.TrialPreferencesStorage;
+import co.smartreceipts.core.di.scopes.ApplicationScope;
 import dagger.Module;
 import dagger.Provides;
 
@@ -46,9 +46,9 @@ public class SharedPreferencesModule {
 
     @Provides
     @ApplicationScope
-    @Named(PaywallPreferencesStorage.PAYWALL_PREFERENCES)
-    public static SharedPreferences providesPaywallPreferences(Context context) {
-        return context.getSharedPreferences(PaywallPreferencesStorage.PAYWALL_PREFERENCES, Context.MODE_PRIVATE);
+    @Named(TrialPreferencesStorage.TRIAL_PREFERENCES)
+    public static SharedPreferences providesTrialPreferences(Context context) {
+        return context.getSharedPreferences(TrialPreferencesStorage.TRIAL_PREFERENCES, Context.MODE_PRIVATE);
     }
 
 }

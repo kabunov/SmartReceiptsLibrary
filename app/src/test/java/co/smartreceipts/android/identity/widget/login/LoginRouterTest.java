@@ -45,8 +45,8 @@ public class LoginRouterTest {
     }
 
     @Test
-    public void navigateToPaywallScreen() {
-        router.navigateToPaywallScreen();
-        verify(navigationHandler).navigateToPaywallScreen();
+    public void navigateToTrialScreen() {
+        router.navigateToTrialScreen();
+        verify(navigationHandler).navigateToTrialScreen();
     }
 }

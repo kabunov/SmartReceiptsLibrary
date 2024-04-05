@@ -1,4 +1,4 @@
-package co.smartreceipts.android.paywall
+package co.smartreceipts.android.trial
 
 import co.smartreceipts.android.activities.LoginSourceDestination
 import co.smartreceipts.android.activities.NavigationHandler
@@ -7,13 +7,13 @@ import co.smartreceipts.core.di.scopes.FragmentScope
 import javax.inject.Inject
 
 @FragmentScope
-class PaywallRouter @Inject constructor(private val navigationHandler: NavigationHandler<SmartReceiptsActivity>) {
+class TrialRouter @Inject constructor(private val navigationHandler: NavigationHandler<SmartReceiptsActivity>) {
 
     fun navigateBack(): Boolean {
         return navigationHandler.navigateBack()
     }
 
     fun navigateToLoginScreen() {
-        navigationHandler.navigateToLoginScreen(LoginSourceDestination.PAYWALL)
+        navigationHandler.navigateToLoginScreen(LoginSourceDestination.TRIAL)
     }
 }

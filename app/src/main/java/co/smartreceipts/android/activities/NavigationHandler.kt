@@ -341,11 +341,11 @@ class NavigationHandler<T : FragmentActivity> @Inject constructor(
         }
     }
 
-    fun navigateToPaywallScreen() {
+    fun navigateToTrialScreen() {
         if (isDualPane) {
-            replaceFragment(fragmentProvider.newPaywallFragment(), R.id.content_details)
+            replaceFragment(fragmentProvider.newTrialFragment(), R.id.content_details)
         } else {
-            replaceFragment(fragmentProvider.newPaywallFragment(), R.id.content_list)
+            replaceFragment(fragmentProvider.newTrialFragment(), R.id.content_list)
         }
     }
 
@@ -396,5 +396,5 @@ class NavigationHandler<T : FragmentActivity> @Inject constructor(
 enum class LoginSourceDestination {
     OCR,
     SUBSCRIPTIONS,
-    PAYWALL,
+    TRIAL,
 }

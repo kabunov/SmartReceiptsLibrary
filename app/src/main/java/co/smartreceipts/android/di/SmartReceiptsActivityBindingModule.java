@@ -14,8 +14,6 @@ import co.smartreceipts.android.ocr.widget.configuration.OcrConfigurationFragmen
 import co.smartreceipts.android.ocr.widget.di.OcrConfigurationModule;
 import co.smartreceipts.android.ocr.widget.tooltip.ReceiptCreateEditFragmentTooltipFragment;
 import co.smartreceipts.android.ocr.widget.tooltip.di.ReceiptCreateEditFragmentTooltipFragmentModule;
-import co.smartreceipts.android.paywall.PaywallFragment;
-import co.smartreceipts.android.paywall.di.PaywallModule;
 import co.smartreceipts.android.receipts.ReceiptsListFragment;
 import co.smartreceipts.android.receipts.delete.DeleteReceiptDialogFragment;
 import co.smartreceipts.android.receipts.di.ReceiptsListModule;
@@ -29,6 +27,8 @@ import co.smartreceipts.android.sync.widget.backups.ImportLocalBackupDialogFragm
 import co.smartreceipts.android.sync.widget.backups.ImportRemoteBackupDialogFragment;
 import co.smartreceipts.android.sync.widget.backups.RenameRemoteBackupDialogFragment;
 import co.smartreceipts.android.sync.widget.errors.DriveRecoveryDialogFragment;
+import co.smartreceipts.android.trial.TrialFragment;
+import co.smartreceipts.android.trial.di.TrialModule;
 import co.smartreceipts.android.trips.TripFragment;
 import co.smartreceipts.android.trips.di.TripFragmentModule;
 import co.smartreceipts.android.trips.editor.TripCreateEditFragment;
@@ -140,7 +140,7 @@ public abstract class SmartReceiptsActivityBindingModule {
     public abstract GraphsFragment graphsFragment();
 
     @FragmentScope
-    @ContributesAndroidInjector(modules = PaywallModule.class)
-    public abstract PaywallFragment paywallFragment();
+    @ContributesAndroidInjector(modules = TrialModule.class)
+    public abstract TrialFragment trialFragment();
 
 }

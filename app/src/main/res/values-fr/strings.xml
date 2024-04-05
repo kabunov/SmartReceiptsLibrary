@@ -556,15 +556,15 @@
     <string name="subscriptions_success_details">Le plan a été acheté avec succès</string>
     <string name="subscriptions_success_button">Continuer</string>
 
-    <!-- ================== Paywall Fragment ==================== -->
-    <string name="paywall_header1">Offre spéciale :</string>
-    <string name="paywall_header2">Essayez Smart Receipts Plus gratuitement pendant 7 jours</string>
-    <string name="paywall_reminder">Nous vous rappellerons avant la fin de la période d\'essai.</string>
-    <string name="paywall_subscription_free">7 jours gratuits !</string>
-    <string name="paywall_text1">Reconnaissance précise pour le suivi des dépenses</string>
-    <string name="paywall_text2">Sauvegardes sécurisées pour protéger vos données</string>
-    <string name="paywall_text3">Sans publicité – confort maximal d\'utilisation</string>
-    <string name="paywall_text4">Contrôlez les formats et les paramètres pour l\'exportation des données</string>
-    <string name="paywall_submit">Essayer Gratuitement</string>
+    <!-- ================== Trial Fragment ==================== -->
+    <string name="trial_header1">Offre spéciale :</string>
+    <string name="trial_header2">Essayez Smart Receipts Plus gratuitement pendant 7 jours</string>
+    <string name="trial_reminder">Nous vous rappellerons avant la fin de la période d\'essai.</string>
+    <string name="trial_subscription_free">7 jours gratuits !</string>
+    <string name="trial_text1">Reconnaissance précise pour le suivi des dépenses</string>
+    <string name="trial_text2">Sauvegardes sécurisées pour protéger vos données</string>
+    <string name="trial_text3">Sans publicité – confort maximal d\'utilisation</string>
+    <string name="trial_text4">Contrôlez les formats et les paramètres pour l\'exportation des données</string>
+    <string name="trial_submit">Essayer Gratuitement</string>
 
 </resources>

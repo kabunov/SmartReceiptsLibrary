@@ -1,4 +1,4 @@
-package co.smartreceipts.android.paywall.data
+package co.smartreceipts.android.trial.data
 
 import android.content.SharedPreferences
 import co.smartreceipts.core.di.scopes.ApplicationScope
@@ -10,8 +10,8 @@ import javax.inject.Inject
 import javax.inject.Named
 
 @ApplicationScope
-class PaywallPreferencesStorage @Inject constructor(@Named(PAYWALL_PREFERENCES) sharedPreferences: Lazy<SharedPreferences>) :
-    PaywallStorage {
+class TrialPreferencesStorage @Inject constructor(@Named(TRIAL_PREFERENCES) sharedPreferences: Lazy<SharedPreferences>) :
+    TrialStorage {
 
     private val sharedPreferences: Lazy<SharedPreferences>
 
@@ -37,7 +37,7 @@ class PaywallPreferencesStorage @Inject constructor(@Named(PAYWALL_PREFERENCES) 
 
     companion object {
 
-        const val PAYWALL_PREFERENCES = "Smart Receipts paywall"
+        const val TRIAL_PREFERENCES = "Smart Receipts trial"
 
         private const val LAST_SHOWN_DATE = "LAST_SHOWN_DATE"
     }

@@ -13,7 +13,7 @@ import co.smartreceipts.android.model.Receipt
 import co.smartreceipts.android.model.Trip
 import co.smartreceipts.android.ocr.apis.model.OcrResponse
 import co.smartreceipts.android.ocr.widget.configuration.OcrConfigurationFragment
-import co.smartreceipts.android.paywall.PaywallFragment
+import co.smartreceipts.android.trial.TrialFragment
 import co.smartreceipts.android.receipts.editor.ReceiptCreateEditFragment
 import co.smartreceipts.android.receipts.editor.ReceiptCreateEditFragment.ARG_FILE
 import co.smartreceipts.android.receipts.editor.ReceiptCreateEditFragment.ARG_OCR
@@ -176,12 +176,12 @@ class FragmentProvider @Inject constructor() {
     }
 
     /**
-     * Creates a [PaywallFragment] instance
+     * Creates a [TrialFragment] instance
      *
      * @return a new instance of this fragment
      */
-    fun newPaywallFragment(): PaywallFragment {
-        return PaywallFragment.newInstance()
+    fun newTrialFragment(): TrialFragment {
+        return TrialFragment.newInstance()
     }
 
     private fun <T : Fragment> attachArguments(fragment: T, args: Bundle): T {

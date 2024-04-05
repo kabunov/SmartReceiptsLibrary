@@ -1,4 +1,4 @@
-package co.smartreceipts.android.paywall
+package co.smartreceipts.android.trial
 
 import co.smartreceipts.android.purchases.PurchaseEventsListener
 import co.smartreceipts.android.purchases.PurchaseManager
@@ -14,7 +14,7 @@ import javax.inject.Inject
 import javax.inject.Named
 
 @FragmentScope
-class PaywallInteractor @Inject constructor(
+class TrialInteractor @Inject constructor(
     private val identityManager: IdentityManager,
     private val purchaseManager: PurchaseManager,
     @Named(RxSchedulers.MAIN)
@@ -44,6 +44,6 @@ class PaywallInteractor @Inject constructor(
     }
 
     fun startPurchase() {
-        purchaseManager.initiatePurchase(InAppPurchase.StandardSubscriptionTrialPlan, PurchaseSource.Paywall)
+        purchaseManager.initiatePurchase(InAppPurchase.StandardSubscriptionTrialPlan, PurchaseSource.Trial)
     }
 }

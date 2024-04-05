@@ -576,15 +576,15 @@
     <!-- ================== Leak Canary ==================== -->
     <string name="leak_canary_test_class_name">co.smartreceipts.android</string>
 
-    <!-- ================== Paywall Fragment ==================== -->
-    <string name="paywall_header1">Special Offer:</string>
-    <string name="paywall_header2">Try Smart Receipts Plus for free for 7 days</string>
-    <string name="paywall_reminder">We\'ll remind you before the trial period ends.</string>
-    <string name="paywall_subscription_free">7 days free!</string>
-    <string name="paywall_text1">Accurate recognition for expense tracking</string>
-    <string name="paywall_text2">Secure backups to protect your data</string>
-    <string name="paywall_text3">Ad-free – maximum comfort of use</string>
-    <string name="paywall_text4">Control formats and settings for data export</string>
-    <string name="paywall_submit">Try for Free</string>
+    <!-- ================== Trial Fragment ==================== -->
+    <string name="trial_header1">Special Offer:</string>
+    <string name="trial_header2">Try Smart Receipts Plus for free for 7 days</string>
+    <string name="trial_reminder">We\'ll remind you before the trial period ends.</string>
+    <string name="trial_subscription_free">7 days free!</string>
+    <string name="trial_text1">Accurate recognition for expense tracking</string>
+    <string name="trial_text2">Secure backups to protect your data</string>
+    <string name="trial_text3">Ad-free – maximum comfort of use</string>
+    <string name="trial_text4">Control formats and settings for data export</string>
+    <string name="trial_submit">Try for Free</string>
 
 </resources>
