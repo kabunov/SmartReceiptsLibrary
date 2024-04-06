@@ -8,4 +8,8 @@ class EmptyInterstitialAdPresenter @Inject constructor() : InterstitialAdPresent
     override fun showAd(activity: Activity) {
         /* no-op */
     }
+
+    override fun showAdIfPossible(activity: Activity) {
+        /* no-op */
+    }
 }

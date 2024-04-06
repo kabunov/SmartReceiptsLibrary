@@ -3,7 +3,12 @@ package co.smartreceipts.android.distance.editor
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
@@ -12,6 +17,7 @@ import co.smartreceipts.analytics.events.Events
 import co.smartreceipts.android.R
 import co.smartreceipts.android.activities.NavigationHandler
 import co.smartreceipts.android.activities.SmartReceiptsActivity
+import co.smartreceipts.android.ad.InterstitialAdPresenter
 import co.smartreceipts.android.adapters.FooterButtonArrayAdapter
 import co.smartreceipts.android.autocomplete.AutoCompleteArrayAdapter
 import co.smartreceipts.android.autocomplete.AutoCompleteField
@@ -42,7 +48,7 @@ import io.reactivex.functions.Consumer
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
 import java.sql.Date
-import java.util.*
+import java.util.Calendar
 import javax.inject.Inject
 
 class DistanceCreateEditFragment : WBFragment(), DistanceCreateEditView, View.OnFocusChangeListener,
@@ -65,6 +71,9 @@ class DistanceCreateEditFragment : WBFragment(), DistanceCreateEditView, View.On
 
     @Inject
     lateinit var paymentMethodsPresenter: PaymentMethodsPresenter
+
+    @Inject
+    lateinit var interstitialAdPresenter: InterstitialAdPresenter
 
     override val editableItem: Distance?
         get() = arguments?.getParcelable(Distance.PARCEL_KEY)
@@ -237,6 +246,7 @@ class DistanceCreateEditFragment : WBFragment(), DistanceCreateEditView, View.On
                 navigationHandler.navigateBack()
                 return true
             }
+
             R.id.action_save -> {
                 when {
                     editableItem != null -> _updateDistanceClicks.onNext(constructDistance())
@@ -244,10 +254,12 @@ class DistanceCreateEditFragment : WBFragment(), DistanceCreateEditView, View.On
                 }
                 return true
             }
+
             R.id.action_delete -> {
                 showDeleteDialog()
                 return true
             }
+
             else -> return super.onOptionsItemSelected(item)
         }
     }
@@ -259,7 +271,10 @@ class DistanceCreateEditFragment : WBFragment(), DistanceCreateEditView, View.On
 
     override fun present(uiIndicator: UiIndicator<Int>) {
         when (uiIndicator.state) {
-            UiIndicator.State.Success -> navigationHandler.navigateBack()
+            UiIndicator.State.Success -> {
+                interstitialAdPresenter.showAdIfPossible(requireActivity())
+                navigationHandler.navigateBack()
+            }
             else -> if (uiIndicator.state == UiIndicator.State.Error && uiIndicator.data.isPresent) {
                 Toast.makeText(requireContext(), uiIndicator.data.get(), Toast.LENGTH_LONG).show()
             }
@@ -300,6 +315,7 @@ class DistanceCreateEditFragment : WBFragment(), DistanceCreateEditView, View.On
             null -> DistanceBuilderFactory()
                 .setDistance(ModelUtils.tryParse(binding.distanceValue.text.toString()))
                 .setRate(ModelUtils.tryParse(binding.rate.text.toString()))
+
             else -> DistanceBuilderFactory(editableItem!!)
                 .setDistance(ModelUtils.tryParse(binding.distanceValue.text.toString(), editableItem!!.distance))
                 .setRate(ModelUtils.tryParse(binding.rate.text.toString(), editableItem!!.rate))
@@ -363,7 +379,10 @@ class DistanceCreateEditFragment : WBFragment(), DistanceCreateEditView, View.On
         }
     }
 
-    override fun displayAutoCompleteResults(field: AutoCompleteField, results: MutableList<AutoCompleteResult<Distance>>) {
+    override fun displayAutoCompleteResults(
+        field: AutoCompleteField,
+        results: MutableList<AutoCompleteResult<Distance>>
+    ) {
         if (isAdded) {
             if (!shouldHideResults) {
                 if (::snackbar.isInitialized && snackbar.isShown) {
@@ -379,6 +398,7 @@ class DistanceCreateEditFragment : WBFragment(), DistanceCreateEditView, View.On
                             }
                         }
                     }
+
                     DistanceAutoCompleteField.Comment -> {
                         binding.comment.apply {
                             setAdapter(resultsAdapter)
@@ -387,6 +407,7 @@ class DistanceCreateEditFragment : WBFragment(), DistanceCreateEditView, View.On
                             }
                         }
                     }
+
                     else -> throw IllegalArgumentException("Unsupported field type: $field")
                 }
             } else {
@@ -424,6 +445,7 @@ class DistanceCreateEditFragment : WBFragment(), DistanceCreateEditView, View.On
                     resultsAdapter.getPosition(autoCompleteResult)
                 )
             )
+
             false -> _hideAutoCompleteVisibilityClicks.onNext(
                 AutoCompleteUpdateEvent(
                     autoCompleteResult, DistanceAutoCompleteField.Comment, resultsAdapter.getPosition(
@@ -441,8 +463,11 @@ class DistanceCreateEditFragment : WBFragment(), DistanceCreateEditView, View.On
                 resultsAdapter.remove(itemToRemoveOrReAdd)
                 resultsAdapter.notifyDataSetChanged()
                 val view = requireActivity().findViewById<ConstraintLayout>(R.id.update_distance_layout)
-                snackbar = Snackbar.make(view, getString(
-                        R.string.item_removed_from_auto_complete, itemToRemoveOrReAdd!!.displayName), Snackbar.LENGTH_LONG)
+                snackbar = Snackbar.make(
+                    view, getString(
+                        R.string.item_removed_from_auto_complete, itemToRemoveOrReAdd!!.displayName
+                    ), Snackbar.LENGTH_LONG
+                )
                 snackbar.setAction(R.string.undo) {
                     if (binding.location.hasFocus()) {
                         _unHideAutoCompleteVisibilityClicks.onNext(

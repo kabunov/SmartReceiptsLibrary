@@ -45,6 +45,7 @@ import co.smartreceipts.analytics.events.Events;
 import co.smartreceipts.analytics.log.Logger;
 import co.smartreceipts.android.R;
 import co.smartreceipts.android.activities.NavigationHandler;
+import co.smartreceipts.android.ad.InterstitialAdPresenter;
 import co.smartreceipts.android.adapters.FooterButtonArrayAdapter;
 import co.smartreceipts.android.adapters.TaxAutoCompleteAdapter;
 import co.smartreceipts.android.autocomplete.AutoCompleteArrayAdapter;
@@ -172,6 +173,9 @@ public class ReceiptCreateEditFragment extends WBFragment implements Editor<Rece
 
     @Inject
     PaymentMethodsPresenter paymentMethodsPresenter;
+
+    @Inject
+    InterstitialAdPresenter interstitialAdPresenter;
 
     @Inject
     @Named(RxSchedulers.IO)
@@ -660,6 +664,8 @@ public class ReceiptCreateEditFragment extends WBFragment implements Editor<Rece
             analytics.record(isNewReceipt() ? Events.Receipts.PersistNewReceipt : Events.Receipts.PersistUpdateReceipt);
 
             backupReminderTooltipStorage.setOneMoreNewReceipt();
+
+            interstitialAdPresenter.showAdIfPossible(requireActivity());
 
             navigationHandler.navigateBack();
         }
