@@ -5,4 +5,6 @@ import android.app.Activity
 interface InterstitialAdPresenter {
 
     fun showAd(activity: Activity)
+
+    fun showAdIfPossible(activity: Activity)
 }
