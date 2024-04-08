@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import co.smartreceipts.analytics.Analytics
+import co.smartreceipts.analytics.events.Events
 import co.smartreceipts.analytics.log.Logger
 import co.smartreceipts.android.R
 import co.smartreceipts.android.databinding.TrialFragmentBinding
@@ -25,6 +27,9 @@ class TrialFragment : Fragment(), TrialView {
 
     @Inject
     lateinit var router: TrialRouter
+
+    @Inject
+    lateinit var analytics: Analytics
 
     private var _binding: TrialFragmentBinding? = null
     private val binding get() = _binding!!
@@ -43,6 +48,7 @@ class TrialFragment : Fragment(), TrialView {
             binding.textSubscriptionPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
         binding.buttonClose.setOnClickListener {
+            analytics.record(Events.Trial.TrialSubscriptionClose)
             router.navigateBack()
         }
 

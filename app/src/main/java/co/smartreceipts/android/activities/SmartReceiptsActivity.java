@@ -246,6 +246,7 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
                 && configurationManager.isEnabled(ConfigurableResourceFeature.SubscriptionModel)
                 && !alreadySubscribed) {
             trialManager.setTrialShown();
+            analytics.record(Events.Trial.TrialSubscriptionShown);
             navigationHandler.navigateToTrialScreen();
         }
     }

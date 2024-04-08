@@ -1,5 +1,7 @@
 package co.smartreceipts.android.trial
 
+import co.smartreceipts.analytics.Analytics
+import co.smartreceipts.analytics.events.Events
 import co.smartreceipts.analytics.log.Logger
 import co.smartreceipts.android.purchases.PurchaseEventsListener
 import co.smartreceipts.android.purchases.model.InAppPurchase
@@ -15,6 +17,7 @@ class TrialPresenter @Inject constructor(
     view: TrialView,
     interactor: TrialInteractor,
     private val identityManager: IdentityManager,
+    private val analytics: Analytics,
 ) :
     BaseViperPresenter<TrialView, TrialInteractor>(view, interactor),
     PurchaseEventsListener {
@@ -37,13 +40,17 @@ class TrialPresenter @Inject constructor(
             view.submitButtonClicks
                 .subscribe {
                     Logger.debug(this, "[trial] Submit clicked, isLoggedIn = ${identityManager.isLoggedIn}")
+                    analytics.record(Events.Trial.TrialSubscriptionTappedContinue)
                     when {
                         identityManager.isLoggedIn -> {
                             view.presentLoading()
                             interactor.startPurchase()
                         }
 
-                        else -> view.navigateToLogin()
+                        else -> {
+                            analytics.record(Events.Trial.TrialSubscriptionLoginRequired)
+                            view.navigateToLogin()
+                        }
                     }
                 }
         )
@@ -55,10 +62,12 @@ class TrialPresenter @Inject constructor(
     }
 
     override fun onPurchaseSuccess(inAppPurchase: InAppPurchase, purchaseSource: PurchaseSource) {
+        analytics.record(Events.Trial.TrialSubscriptionPurchaseSuccess)
         view.presentSuccessSubscription()
     }
 
     override fun onPurchaseFailed(purchaseSource: PurchaseSource) {
+        analytics.record(Events.Trial.TrialSubscriptionPurchaseFailed)
         view.presentFailedSubscription()
     }
 

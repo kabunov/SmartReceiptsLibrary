@@ -9,6 +9,8 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import co.smartreceipts.analytics.Analytics
+import co.smartreceipts.analytics.events.Events
 import co.smartreceipts.analytics.log.Logger.debug
 import co.smartreceipts.android.R
 import co.smartreceipts.android.activities.LoginSourceDestination
@@ -37,6 +39,9 @@ class LoginFragment : WBFragment(), LoginView {
 
     @Inject
     lateinit var navigationHandler: NavigationHandler<SmartReceiptsActivity>
+
+    @Inject
+    lateinit var analytics: Analytics
 
     private var _binding: LoginFragmentBinding? = null
     private val binding get() = _binding!!
@@ -123,6 +128,7 @@ class LoginFragment : WBFragment(), LoginView {
             when (arguments?.getSerializableCompat<LoginSourceDestination>(LOGIN_SOURCE_DESTINATION)) {
                 LoginSourceDestination.OCR -> router.navigateToOcrConfigurationFragment()
                 LoginSourceDestination.SUBSCRIPTIONS -> router.navigateToSubscriptionsActivity()
+                LoginSourceDestination.TRIAL -> analytics.record(Events.Trial.TrialSubscriptionLoginSuccess)
                 else -> {}
             }
         }
