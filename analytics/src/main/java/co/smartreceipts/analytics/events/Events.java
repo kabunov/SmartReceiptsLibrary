@@ -3,7 +3,7 @@ package co.smartreceipts.analytics.events;
 public final class Events {
 
     private enum Category implements Event.Category {
-        Purchases, Navigation, Reports, Receipts, Distance, Generate, Ratings, Informational, Sync, Ocr, Identity, Intent, Permissions, Ads
+        Purchases, Navigation, Reports, Receipts, Distance, Generate, Ratings, Informational, Sync, Ocr, Identity, Intent, Permissions, Ads, Trial
     }
 
     public static final class Purchases {
@@ -157,6 +157,16 @@ public final class Events {
         public static final Event AbcAdClicked = new DefaultEvent(Category.Ads, "AbcAdClicked");
         public static final Event MarketsAdShown = new DefaultEvent(Category.Ads, "MarketsAdShown");
         public static final Event MarketsAdClicked = new DefaultEvent(Category.Ads, "MarketsAdClicked");
+    }
+
+    public static final class Trial {
+        public static final Event TrialSubscriptionShown = new DefaultEvent(Category.Trial, "TrialSubscriptionShown");
+        public static final Event TrialSubscriptionClose = new DefaultEvent(Category.Trial, "TrialSubscriptionClose");
+        public static final Event TrialSubscriptionTappedContinue = new DefaultEvent(Category.Trial, "TrialSubscriptionTappedContinue");
+        public static final Event TrialSubscriptionLoginRequired = new DefaultEvent(Category.Trial, "TrialSubscriptionLoginRequired");
+        public static final Event TrialSubscriptionLoginSuccess = new DefaultEvent(Category.Trial, "TrialSubscriptionLoginSuccess");
+        public static final Event TrialSubscriptionPurchaseSuccess = new DefaultEvent(Category.Trial, "TrialSubscriptionPurchaseSuccess");
+        public static final Event TrialSubscriptionPurchaseFailed = new DefaultEvent(Category.Trial, "TrialSubscriptionPurchaseFailed");
     }
 
 }
