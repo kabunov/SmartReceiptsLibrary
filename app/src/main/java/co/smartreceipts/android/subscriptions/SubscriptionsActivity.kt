@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import co.smartreceipts.analytics.Analytics
+import co.smartreceipts.analytics.events.Events
 import co.smartreceipts.analytics.log.Logger
 import co.smartreceipts.android.R
 import co.smartreceipts.android.databinding.ActivitySubscriptionsBinding
@@ -25,6 +27,9 @@ class SubscriptionsActivity : AppCompatActivity(), SubscriptionsView {
 
     @Inject
     lateinit var presenter: SubscriptionsPresenter
+
+    @Inject
+    lateinit var analytics: Analytics
 
     override val standardSubscriptionClicks: Observable<Unit>
         get() = binding.cardStandard.clicks().filter { !binding.yourPlanStandard.isVisible }
@@ -48,6 +53,10 @@ class SubscriptionsActivity : AppCompatActivity(), SubscriptionsView {
 
         binding.success.buttonContinue.setOnClickListener { finish() }
         binding.success.buttonClose.setOnClickListener { finish() }
+
+        if (savedInstanceState == null) {
+            analytics.record(Events.Subscriptions.SubscriptionShown)
+        }
     }
 
     override fun onResume() {
@@ -65,6 +74,8 @@ class SubscriptionsActivity : AppCompatActivity(), SubscriptionsView {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
+            analytics.record(Events.Subscriptions.SubscriptionClose)
+
             finish()
             return true
         }
