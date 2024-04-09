@@ -1,5 +1,9 @@
 package co.smartreceipts.android.subscriptions
 
+import co.smartreceipts.analytics.Analytics
+import co.smartreceipts.analytics.events.DataPoint
+import co.smartreceipts.analytics.events.DefaultDataPointEvent
+import co.smartreceipts.analytics.events.Events
 import co.smartreceipts.analytics.log.Logger
 import co.smartreceipts.android.purchases.PurchaseEventsListener
 import co.smartreceipts.android.purchases.model.InAppPurchase
@@ -14,7 +18,8 @@ import javax.inject.Inject
 class SubscriptionsPresenter @Inject constructor(
     view: SubscriptionsView,
     interactor: SubscriptionsInteractor,
-    private val identityManager: IdentityManager
+    private val identityManager: IdentityManager,
+    private val analytics: Analytics,
 ) : BaseViperPresenter<SubscriptionsView, SubscriptionsInteractor>(view, interactor),
     PurchaseEventsListener {
 
@@ -30,6 +35,12 @@ class SubscriptionsPresenter @Inject constructor(
         compositeDisposable.add(
             view.standardSubscriptionClicks
                 .subscribe {
+                    analytics.record(
+                        DefaultDataPointEvent(Events.Subscriptions.SubscriptionTapped).addDataPoint(
+                            DataPoint("productId", InAppPurchase.StandardSubscriptionPlan.sku)
+                        )
+                    )
+
                     when {
                         identityManager.isLoggedIn -> {
                             view.presentLoading()
@@ -44,6 +55,12 @@ class SubscriptionsPresenter @Inject constructor(
         compositeDisposable.add(
             view.premiumSubscriptionClicks
                 .subscribe {
+                    analytics.record(
+                        DefaultDataPointEvent(Events.Subscriptions.SubscriptionTapped).addDataPoint(
+                            DataPoint("productId", InAppPurchase.PremiumSubscriptionPlan.sku)
+                        )
+                    )
+
                     when {
                         identityManager.isLoggedIn -> {
                             view.presentLoading()
@@ -82,10 +99,16 @@ class SubscriptionsPresenter @Inject constructor(
     }
 
     override fun onPurchaseSuccess(inAppPurchase: InAppPurchase, purchaseSource: PurchaseSource) {
+        analytics.record(
+            DefaultDataPointEvent(Events.Subscriptions.SubscriptionPurchaseSuccess).addDataPoint(
+                DataPoint("productId", inAppPurchase.sku)
+            )
+        )
         view.presentSuccessSubscription()
     }
 
     override fun onPurchaseFailed(purchaseSource: PurchaseSource) {
+        analytics.record(Events.Subscriptions.SubscriptionPurchaseFailed)
         view.presentFailedSubscription()
     }
 

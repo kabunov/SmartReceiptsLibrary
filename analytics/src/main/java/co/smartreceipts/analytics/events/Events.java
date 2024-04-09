@@ -3,7 +3,7 @@ package co.smartreceipts.analytics.events;
 public final class Events {
 
     private enum Category implements Event.Category {
-        Purchases, Navigation, Reports, Receipts, Distance, Generate, Ratings, Informational, Sync, Ocr, Identity, Intent, Permissions, Ads, Trial
+        Purchases, Navigation, Reports, Receipts, Distance, Generate, Ratings, Informational, Sync, Ocr, Identity, Intent, Permissions, Ads, Trial, Subscriptions,
     }
 
     public static final class Purchases {
@@ -167,6 +167,14 @@ public final class Events {
         public static final Event TrialSubscriptionLoginSuccess = new DefaultEvent(Category.Trial, "TrialSubscriptionLoginSuccess");
         public static final Event TrialSubscriptionPurchaseSuccess = new DefaultEvent(Category.Trial, "TrialSubscriptionPurchaseSuccess");
         public static final Event TrialSubscriptionPurchaseFailed = new DefaultEvent(Category.Trial, "TrialSubscriptionPurchaseFailed");
+    }
+
+    public static final class Subscriptions {
+        public static final Event SubscriptionShown = new DefaultEvent(Category.Subscriptions, "SubscriptionShown");
+        public static final Event SubscriptionClose = new DefaultEvent(Category.Subscriptions, "SubscriptionClose");
+        public static final Event SubscriptionTapped = new DefaultEvent(Category.Subscriptions, "SubscriptionTapped");
+        public static final Event SubscriptionPurchaseSuccess = new DefaultEvent(Category.Subscriptions, "SubscriptionPurchaseSuccess");
+        public static final Event SubscriptionPurchaseFailed = new DefaultEvent(Category.Subscriptions, "SubscriptionPurchaseFailed");
     }
 
 }
