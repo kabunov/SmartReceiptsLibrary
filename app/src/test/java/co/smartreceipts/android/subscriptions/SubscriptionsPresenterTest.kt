@@ -1,5 +1,6 @@
 package co.smartreceipts.android.subscriptions
 
+import co.smartreceipts.analytics.Analytics
 import co.smartreceipts.android.purchases.model.InAppPurchase
 import co.smartreceipts.core.identity.IdentityManager
 import com.android.billingclient.api.ProductDetails
@@ -25,6 +26,7 @@ class SubscriptionsPresenterTest {
     private val view = mock<SubscriptionsView>()
     private val interactor = mock<SubscriptionsInteractor>()
     private val identityManager = mock<IdentityManager>()
+    private val analytics = mock<Analytics>()
 
     private val standardSkuDetails = mock<ProductDetails>()
     private val standardSkuSubscriptionOfferDetails = mock<SubscriptionOfferDetails>()
@@ -65,7 +67,7 @@ class SubscriptionsPresenterTest {
         whenever(premiumSkuDetails.subscriptionOfferDetails).thenReturn(listOf(premiumSkuSubscriptionOfferDetails))
         whenever(premiumSkuDetails.productId).thenReturn(InAppPurchase.PremiumSubscriptionPlan.sku)
 
-        presenter = SubscriptionsPresenter(view, interactor, identityManager)
+        presenter = SubscriptionsPresenter(view, interactor, identityManager, analytics)
     }
 
     @Test
