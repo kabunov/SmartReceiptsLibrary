@@ -578,7 +578,7 @@
 
     <!-- ================== Trial Fragment ==================== -->
     <string name="trial_header1">Special Offer:</string>
-    <string name="trial_header2">Try Smart Receipts Plus for free for 7 days</string>
+    <string name="trial_header2">Try Smart Receipts Premium for free for 7 days</string>
     <string name="trial_reminder">We\'ll remind you before the trial period ends.</string>
     <string name="trial_subscription_free">7 days free!</string>
     <string name="trial_text1">Accurate recognition for expense tracking</string>

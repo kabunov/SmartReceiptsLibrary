@@ -564,7 +564,7 @@
 
     <!-- ================== Trial Fragment ==================== -->
     <string name="trial_header1">Spesialtilbud:</string>
-    <string name="trial_header2">Prøv Smart Receipts Plus gratis i 7 dager</string>
+    <string name="trial_header2">Prøv Smart Receipts Premium gratis i 7 dager</string>
     <string name="trial_reminder">Vi vil minne deg på før prøveperioden avsluttes.</string>
     <string name="trial_subscription_free">7 dager gratis!</string>
     <string name="trial_text1">Nøyaktig gjenkjenning for utgiftssporing</string>
