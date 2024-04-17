@@ -59,6 +59,9 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        profile {
+            initWith debug
+        }
     }
 
     bundle {
@@ -226,6 +229,10 @@ android {
 
         // Free ads
         freeImplementation "com.google.android.gms:play-services-ads:$ADMOB_VERSION"
+
+        debugImplementation 'co.smartreceipts.flutter:flutter_debug:1.0'
+        profileImplementation 'co.smartreceipts.flutter:flutter_profile:1.0'
+        releaseImplementation 'co.smartreceipts.flutter:flutter_release:1.0'
     }
 
     // Note: This version is controlled in the base build file

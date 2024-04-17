@@ -63,6 +63,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import wb.android.flex.Flex;
 
+import io.flutter.embedding.android.FlutterActivity;
+
 public class SmartReceiptsActivity extends AppCompatActivity implements HasAndroidInjector,
         PurchaseEventsListener, IntentImportInformationView, IntentImportProvider, SearchResultKeeper {
 
@@ -139,6 +141,12 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
         if (savedInstanceState == null) {
             Logger.debug(this, "savedInstanceState == null");
             navigationHandler.navigateToHomeTripsFragment();
+
+            // TODO add local storage to check if the app opened the first time
+            this.startActivityForResult(
+                    FlutterActivity.createDefaultIntent(this),
+                    FLUTTER_ONBOARDING_REQUEST_CODE
+            );
         }
 
         adPresenter.onActivityCreated(this);
@@ -182,6 +190,8 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
                 }, throwable -> Logger.warn(SmartReceiptsActivity.this, "Failed to retrieve purchases for this session.")));
     }
 
+    private static int FLUTTER_ONBOARDING_REQUEST_CODE = 5212;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -211,6 +221,8 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
             }
         } else if (!backupProvidersManager.onActivityResult(requestCode, resultCode, data)) {
             super.onActivityResult(requestCode, resultCode, data);
+        } else if (requestCode == FLUTTER_ONBOARDING_REQUEST_CODE) {
+            // TODO handle onboarding closing
         }
     }
 
