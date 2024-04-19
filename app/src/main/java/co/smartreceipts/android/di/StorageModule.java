@@ -1,8 +1,10 @@
 package co.smartreceipts.android.di;
 
 
+import co.smartreceipts.android.onboarding.data.OnboardingStorage;
 import co.smartreceipts.android.rating.data.AppRatingPreferencesStorage;
 import co.smartreceipts.android.rating.data.AppRatingStorage;
+import co.smartreceipts.android.onboarding.data.OnboardingPreferencesStorage;
 import co.smartreceipts.android.trial.data.TrialPreferencesStorage;
 import co.smartreceipts.android.trial.data.TrialStorage;
 import co.smartreceipts.android.widget.tooltip.report.backup.data.BackupReminderPreferencesStorage;
@@ -37,6 +39,12 @@ public class StorageModule {
     @Provides
     @ApplicationScope
     public static TrialStorage provideTrialStorage(TrialPreferencesStorage storage) {
+        return storage;
+    }
+
+    @Provides
+    @ApplicationScope
+    public static OnboardingStorage provideOnboardingStorage(OnboardingPreferencesStorage storage) {
         return storage;
     }
 

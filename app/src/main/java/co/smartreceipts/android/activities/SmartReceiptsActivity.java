@@ -36,6 +36,7 @@ import co.smartreceipts.android.imports.intents.widget.info.IntentImportInformat
 import co.smartreceipts.android.imports.intents.widget.info.IntentImportInformationView;
 import co.smartreceipts.android.model.Receipt;
 import co.smartreceipts.android.model.Trip;
+import co.smartreceipts.android.onboarding.OnboardingManager;
 import co.smartreceipts.android.persistence.PersistenceManager;
 import co.smartreceipts.android.purchases.PurchaseEventsListener;
 import co.smartreceipts.android.purchases.PurchaseManager;
@@ -62,8 +63,6 @@ import io.reactivex.Maybe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import wb.android.flex.Flex;
-
-import io.flutter.embedding.android.FlutterActivity;
 
 public class SmartReceiptsActivity extends AppCompatActivity implements HasAndroidInjector,
         PurchaseEventsListener, IntentImportInformationView, IntentImportProvider, SearchResultKeeper {
@@ -116,6 +115,9 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
     @Inject
     TrialManager trialManager;
 
+    @Inject
+    OnboardingManager onboardingManager;
+
     private volatile Set<InAppPurchase> availablePurchases;
     private CompositeDisposable compositeDisposable;
 
@@ -142,11 +144,23 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
             Logger.debug(this, "savedInstanceState == null");
             navigationHandler.navigateToHomeTripsFragment();
 
-            // TODO add local storage to check if the app opened the first time
-            this.startActivityForResult(
-                    FlutterActivity.createDefaultIntent(this),
-                    FLUTTER_ONBOARDING_REQUEST_CODE
-            );
+            boolean alreadySubscribed = purchaseWallet.hasActivePurchase(InAppPurchase.SmartReceiptsPlus)
+                    || purchaseWallet.hasActivePurchase(InAppPurchase.StandardSubscriptionPlan)
+                    || purchaseWallet.hasActivePurchase(InAppPurchase.PremiumSubscriptionPlan)
+                    || purchaseWallet.hasActivePurchase(InAppPurchase.StandardSubscriptionTrialPlan);
+            boolean subscriptionsEnabled = configurationManager.isEnabled(ConfigurableResourceFeature.SubscriptionModel);
+
+            if (onboardingManager.isOnboardingCanBeShown()
+                    && subscriptionsEnabled
+                    && !alreadySubscribed) {
+                onboardingManager.setOnboardingShown();
+                Intent intent = new Intent(this, SmartReceiptsFlutterActivity.class);
+                this.startActivityForResult(intent, FLUTTER_ONBOARDING_REQUEST_CODE);
+            } else if (trialManager.isTrialCanBeShown()
+                    && subscriptionsEnabled
+                    && !alreadySubscribed) {
+                showTrial();
+            }
         }
 
         adPresenter.onActivityCreated(this);
@@ -190,7 +204,7 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
                 }, throwable -> Logger.warn(SmartReceiptsActivity.this, "Failed to retrieve purchases for this session.")));
     }
 
-    private static int FLUTTER_ONBOARDING_REQUEST_CODE = 5212;
+    private static final int FLUTTER_ONBOARDING_REQUEST_CODE = 5212;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -219,10 +233,10 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
             if (resultCode == SettingsActivity.RESULT_OPEN_SUBSCRIPTIONS) {
                 navigateToSubscriptions();
             }
+        } else if (requestCode == FLUTTER_ONBOARDING_REQUEST_CODE) {
+            showTrial();
         } else if (!backupProvidersManager.onActivityResult(requestCode, resultCode, data)) {
             super.onActivityResult(requestCode, resultCode, data);
-        } else if (requestCode == FLUTTER_ONBOARDING_REQUEST_CODE) {
-            // TODO handle onboarding closing
         }
     }
 
@@ -248,18 +262,6 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
             loginRequested = false;
             navigationHandler.navigateToLoginScreen();
             return;
-        }
-
-        boolean alreadySubscribed = purchaseWallet.hasActivePurchase(InAppPurchase.SmartReceiptsPlus)
-                || purchaseWallet.hasActivePurchase(InAppPurchase.StandardSubscriptionPlan)
-                || purchaseWallet.hasActivePurchase(InAppPurchase.PremiumSubscriptionPlan)
-                || purchaseWallet.hasActivePurchase(InAppPurchase.StandardSubscriptionTrialPlan);
-        if (trialManager.isTrialCanBeShown()
-                && configurationManager.isEnabled(ConfigurableResourceFeature.SubscriptionModel)
-                && !alreadySubscribed) {
-            trialManager.setTrialShown();
-            analytics.record(Events.Trial.TrialSubscriptionShown);
-            navigationHandler.navigateToTrialScreen();
         }
     }
 
@@ -446,5 +448,11 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
         } else {
             navigationHandler.navigateToLoginScreen(LoginSourceDestination.SUBSCRIPTIONS);
         }
+    }
+
+    private void showTrial() {
+        trialManager.setTrialShown();
+        analytics.record(Events.Trial.TrialSubscriptionShown);
+        navigationHandler.navigateToTrialScreen();
     }
 }

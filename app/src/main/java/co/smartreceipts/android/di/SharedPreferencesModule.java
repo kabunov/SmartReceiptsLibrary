@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 
 import javax.inject.Named;
 
+import co.smartreceipts.android.onboarding.data.OnboardingPreferencesStorage;
 import co.smartreceipts.android.persistence.database.tables.ordering.OrderingPreferencesManager;
 import co.smartreceipts.android.rating.data.AppRatingPreferencesStorage;
 import co.smartreceipts.android.settings.UserPreferenceManager;
@@ -51,4 +52,10 @@ public class SharedPreferencesModule {
         return context.getSharedPreferences(TrialPreferencesStorage.TRIAL_PREFERENCES, Context.MODE_PRIVATE);
     }
 
+    @Provides
+    @ApplicationScope
+    @Named(OnboardingPreferencesStorage.ONBOARDING_PREFERENCES)
+    public static SharedPreferences providesOnboardingPreferences(Context context) {
+        return context.getSharedPreferences(OnboardingPreferencesStorage.ONBOARDING_PREFERENCES, Context.MODE_PRIVATE);
+    }
 }
