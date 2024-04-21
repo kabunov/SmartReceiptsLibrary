@@ -126,6 +126,8 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
 
     private boolean loginRequested = false;
 
+    private boolean showTrial = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AndroidInjection.inject(this);
@@ -234,7 +236,7 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
                 navigateToSubscriptions();
             }
         } else if (requestCode == FLUTTER_ONBOARDING_REQUEST_CODE) {
-            showTrial();
+            showTrial = true;
         } else if (!backupProvidersManager.onActivityResult(requestCode, resultCode, data)) {
             super.onActivityResult(requestCode, resultCode, data);
         }
@@ -261,6 +263,12 @@ public class SmartReceiptsActivity extends AppCompatActivity implements HasAndro
         if (loginRequested) {
             loginRequested = false;
             navigationHandler.navigateToLoginScreen();
+            return;
+        }
+
+        if (showTrial) {
+            showTrial = false;
+            showTrial();
             return;
         }
     }
