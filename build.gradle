@@ -8,13 +8,6 @@ buildscript {
         maven { url "https://jitpack.io" }
         maven { url 'https://repository.adincube.com/maven' }
         maven { url "https://plugins.gradle.org/m2/" }
-        maven {
-            // TODO replace absolute path
-            url '/Users/kabunov/Documents/Projects/smart-receipts-flutter/build/host/outputs/repo'
-        }
-        maven {
-            url 'https://storage.googleapis.com/download.flutter.io'
-        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.4.2'
@@ -26,6 +19,8 @@ buildscript {
     }
 }
 
+println "Project FUCK directory: file://${projectDir}/Flutter/outputs/repo"
+
 allprojects {
     repositories {
         mavenLocal()
@@ -34,9 +29,12 @@ allprojects {
         jcenter()
         maven { url "https://jitpack.io" }
         maven { url 'https://repository.adincube.com/maven' }
+
         maven {
-            // TODO replace absolute path
-            url '/Users/kabunov/Documents/Projects/smart-receipts-flutter/build/host/outputs/repo'
+            url "file://${rootProject.projectDir}/Flutter/outputs/repo"
+        }
+        maven {
+            url "file://${rootProject.projectDir}/../smart-receipts-flutter/build/host/outputs/repo"
         }
         maven {
             url 'https://storage.googleapis.com/download.flutter.io'

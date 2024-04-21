@@ -176,6 +176,21 @@
 
         <activity android:name=".activities.SmartReceiptsFlutterActivity" />
 
+        <!-- Set up the Sign in with Apple activity, such that it's callable from the browser-redirect -->
+        <activity
+            android:name="com.aboutyou.dart_packages.sign_in_with_apple.SignInWithAppleCallback"
+            android:exported="true"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="signinwithapple" />
+                <data android:path="callback" />
+            </intent-filter>
+        </activity>
+
         <!-- FirebaseMessagingService performs security checks at runtime, no need for explicit permissions despite exported="true" -->
         <service
             android:name="co.smartreceipts.push.services.MyFirebaseMessagingService"
@@ -190,6 +205,11 @@
         <meta-data
             android:name="google_analytics_adid_collection_enabled"
             android:value="false" />
+
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2"
+            />
 
         <provider
             android:name="androidx.core.content.FileProvider"

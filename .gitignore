@@ -50,3 +50,6 @@ local.properties
 
 # Translation Tools
 scripts/logs/
+
+# Flutter
+/Flutter
