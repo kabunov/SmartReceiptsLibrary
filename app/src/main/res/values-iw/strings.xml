@@ -566,6 +566,9 @@
     <string name="subscriptions_per_month">לחודש</string>
     <string name="subscriptions_cancel_info">ניתן לבטל את התוכנית שלך בכל עת <u>בהגדרות</u></string>
     <string name="subscriptions_your_plan">התוכנית שלך</string>
+    <string name="subscriptions_trial_title">הצעה ייחודית: נסה את Smart Receipts Premium בחינם למשך 7 ימים</string>
+    <string name="subscriptions_trial_button">נסה בחינם למשך 7 ימים</string>
+    <string name="subscriptions_trial_button_subtitle">אחרי %s לחודש</string>
 
     <string name="subscriptions_success_title">הצלחה!</string>
     <string name="subscriptions_success_details">התוכנית נרכשה בהצלחה</string>

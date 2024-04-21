@@ -551,6 +551,9 @@
     <string name="subscriptions_per_month">por mês</string>
     <string name="subscriptions_cancel_info">Você pode cancelar seu plano a qualquer momento <u>nas configurações</u></string>
     <string name="subscriptions_your_plan">Seu Plano</string>
+    <string name="subscriptions_trial_title">Oferta Única: Experimente o Smart Receipts Premium Grátis por 7 Dias</string>
+    <string name="subscriptions_trial_button">Experimente Grátis por 7 Dias</string>
+    <string name="subscriptions_trial_button_subtitle">após %s por mês</string>
 
     <string name="subscriptions_success_title">Sucesso!</string>
     <string name="subscriptions_success_details">O plano foi comprado com sucesso</string>

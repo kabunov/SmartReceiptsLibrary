@@ -553,6 +553,9 @@
     <string name="subscriptions_per_month">на місяць</string>
     <string name="subscriptions_cancel_info">Ви можете скасувати свій план в будь-який момент <u>в налаштуваннях</u></string>
     <string name="subscriptions_your_plan">Ваш план</string>
+    <string name="subscriptions_trial_title">Унікальна пропозиція: Спробуйте Smart Receipts Premium безкоштовно на 7 днів</string>
+    <string name="subscriptions_trial_button">Спробувати безкоштовно на 7 днів</string>
+    <string name="subscriptions_trial_button_subtitle">після %s на місяць</string>
 
     <string name="subscriptions_success_title">Успіх!</string>
     <string name="subscriptions_success_details">План було успішно придбано</string>

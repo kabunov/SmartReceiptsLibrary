@@ -557,6 +557,9 @@
     <string name="subscriptions_per_month">per månad</string>
     <string name="subscriptions_cancel_info">Du kan avslutte abonnementet når som helst <u>innstillingane</u></string>
     <string name="subscriptions_your_plan">Din plan</string>
+    <string name="subscriptions_trial_title">Unikt Tilbod: Prøv Smart Receipts Premium Gratis i 7 Dagar</string>
+    <string name="subscriptions_trial_button">Prøv Gratis i 7 Dagar</string>
+    <string name="subscriptions_trial_button_subtitle">etter %s per månad</string>
 
     <string name="subscriptions_success_title">Suksess!</string>
     <string name="subscriptions_success_details">Planen ble kjøpt vellykka</string>

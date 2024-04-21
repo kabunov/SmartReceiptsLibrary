@@ -551,6 +551,9 @@
     <string name="subscriptions_per_month">par mois</string>
     <string name="subscriptions_cancel_info">Vous pouvez annuler votre plan à tout moment <u>dans les paramètres</u></string>
     <string name="subscriptions_your_plan">Votre Plan</string>
+    <string name="subscriptions_trial_title">Offre Unique : Essayez Smart Receipts Premium Gratuitement pendant 7 Jours</string>
+    <string name="subscriptions_trial_button">Essayer Gratuitement pendant 7 Jours</string>
+    <string name="subscriptions_trial_button_subtitle">après %s par mois</string>
 
     <string name="subscriptions_success_title">Succès !</string>
     <string name="subscriptions_success_details">Le plan a été acheté avec succès</string>

@@ -49,7 +49,7 @@
     <color name="transparent_white_60">#99FFFFFF</color>
     <color name="transparent_white_12">#1FFFFFFF</color>
     <color name="subscription_current_plan_bg">#F4F4F4</color>
-
+    <color name="subscription_current_plan_trial_bg">#E0DDEE</color>
 
     <!-- Palette for lists and cards -->
     <color name="list_background">@color/window_background_color</color>

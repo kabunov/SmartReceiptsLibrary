@@ -35,6 +35,10 @@ class SubscriptionsActivity : AppCompatActivity(), SubscriptionsView {
         get() = binding.cardStandard.clicks().filter { !binding.yourPlanStandard.isVisible }
     override val premiumSubscriptionClicks: Observable<Unit>
         get() = binding.cardPremium.clicks().filter { !binding.yourPlanPremium.isVisible }
+    override val trialSubscriptionClicks: Observable<Unit>
+        get() = binding.trialButtonContainer.clicks()
+            .mergeWith(binding.trialTitle.clicks())
+            .filter { binding.trialButtonTitle.isVisible }
     override val cancelSubscriptionInfoClicks: Observable<Unit> get() = binding.cancelSubscriptionInfo.clicks()
 
     private var _binding: ActivitySubscriptionsBinding? = null
@@ -136,6 +140,26 @@ class SubscriptionsActivity : AppCompatActivity(), SubscriptionsView {
             binding.pricePremium.isVisible = true
             binding.perMonthPremium.isVisible = true
             binding.yourPlanPremium.isVisible = false
+        }
+    }
+
+    override fun presentTrialPlan(price: String?) {
+        if (price == null) { // this plan is current
+            binding.trialButtonContainer.backgroundTintList =
+                ContextCompat.getColorStateList(this, R.color.subscription_current_plan_bg)
+
+            binding.trialButtonTitle.isVisible = false
+            binding.trialButtonSubtitle.isVisible = false
+            binding.yourPlanTrial.isVisible = true
+        } else {
+            binding.trialButtonContainer.backgroundTintList =
+                ContextCompat.getColorStateList(this, R.color.subscription_current_plan_trial_bg)
+
+            binding.trialButtonTitle.isVisible = true
+            binding.trialButtonSubtitle.isVisible = true
+            binding.yourPlanTrial.isVisible = false
+
+            binding.trialButtonSubtitle.text = getString(R.string.subscriptions_trial_button_subtitle, price)
         }
     }
 

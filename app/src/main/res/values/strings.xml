@@ -568,6 +568,9 @@
     <string name="subscriptions_per_month">per month</string>
     <string name="subscriptions_cancel_info">You can cancel your plan at any time <u>in the settings</u></string>
     <string name="subscriptions_your_plan">Your Plan</string>
+    <string name="subscriptions_trial_title">Unique Offer: Try Smart Receipts Premium Free for 7 Days</string>
+    <string name="subscriptions_trial_button">Try Free for 7 Days</string>
+    <string name="subscriptions_trial_button_subtitle">after %s per month</string>
 
     <string name="subscriptions_success_title">Success!</string>
     <string name="subscriptions_success_details">The plan was successfully purchased</string>

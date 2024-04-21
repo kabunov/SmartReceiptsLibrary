@@ -104,7 +104,6 @@
             android:text="@string/subscriptions_premium_description"
             android:textColor="@color/violet_dark"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/price_premium_container"
             app:layout_constraintStart_toEndOf="@id/premium_detail_plus"
             app:layout_constraintTop_toBottomOf="@id/label_premium" />
@@ -130,7 +129,6 @@
             android:backgroundTint="@color/violet"
             android:orientation="vertical"
             app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toEndOf="@id/label_premium"
@@ -167,6 +165,80 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:padding="@dimen/padding_large"
+                android:text="@string/subscriptions_your_plan"
+                android:textColor="@color/violet"
+                android:textSize="22sp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider"
+            style="@style/Widget.View.Divider.Horizontal"
+            android:layout_marginHorizontal="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_large"
+            android:background="#22000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/price_premium_container" />
+
+        <TextView
+            android:id="@+id/trial_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_tiny"
+            android:text="@string/subscriptions_trial_title"
+            android:textColor="#0A0114"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
+
+        <LinearLayout
+            android:id="@+id/trial_button_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_large"
+            android:background="@drawable/bg_rounded_rectangle"
+            android:backgroundTint="@color/subscription_current_plan_trial_bg"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/padding_larger"
+            android:paddingVertical="@dimen/padding_normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/trial_title">
+
+            <TextView
+                android:id="@+id/trial_button_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:text="@string/subscriptions_trial_button"
+                android:textColor="@color/violet"
+                android:textSize="22sp"
+                app:autoSizeTextType="uniform" />
+
+            <TextView
+                android:id="@+id/trial_button_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="@color/violet"
+                android:textSize="@dimen/font_caption"
+                tools:text="@string/subscriptions_trial_button_subtitle" />
+
+            <TextView
+                android:id="@+id/your_plan_trial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center_horizontal"
                 android:text="@string/subscriptions_your_plan"
                 android:textColor="@color/violet"
                 android:textSize="22sp"

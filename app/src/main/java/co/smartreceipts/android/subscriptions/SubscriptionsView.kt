@@ -8,12 +8,16 @@ interface SubscriptionsView {
 
     val premiumSubscriptionClicks: Observable<Unit>
 
+    val trialSubscriptionClicks: Observable<Unit>
+
     val cancelSubscriptionInfoClicks: Observable<Unit>
 
 
     fun presentStandardPlan(price: String?)
 
     fun presentPremiumPlan(price: String?)
+
+    fun presentTrialPlan(price: String?)
 
     fun presentCancelInfo(isVisible: Boolean)
 

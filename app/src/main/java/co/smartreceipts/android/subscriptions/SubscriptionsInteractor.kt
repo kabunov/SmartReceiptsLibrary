@@ -69,6 +69,10 @@ class SubscriptionsInteractor(
         purchaseManager.initiatePurchase(InAppPurchase.PremiumSubscriptionPlan, PurchaseSource.SubscriptionsScreen)
     }
 
+    fun purchaseTrial() {
+        purchaseManager.initiatePurchase(InAppPurchase.StandardSubscriptionTrialPlan, PurchaseSource.SubscriptionsScreen)
+    }
+
     private fun getOwnedPlans(): Single<List<InAppPurchase>> {
 
         return purchaseManager.allOwnedPurchasesAndSync

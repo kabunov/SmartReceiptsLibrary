@@ -73,6 +73,26 @@ class SubscriptionsPresenter @Inject constructor(
         )
 
         compositeDisposable.add(
+            view.trialSubscriptionClicks
+                .subscribe {
+                    analytics.record(
+                        DefaultDataPointEvent(Events.Subscriptions.SubscriptionTapped).addDataPoint(
+                            DataPoint("productId", InAppPurchase.StandardSubscriptionTrialPlan.sku)
+                        )
+                    )
+
+                    when {
+                        identityManager.isLoggedIn -> {
+                            view.presentLoading()
+                            interactor.purchaseTrial()
+                        }
+
+                        else -> view.navigateToLogin()
+                    }
+                }
+        )
+
+        compositeDisposable.add(
             interactor.getPlansWithOwnership()
                 .subscribe({ plans ->
                     var userOwnsPlan = false
@@ -84,6 +104,10 @@ class SubscriptionsPresenter @Inject constructor(
                         } else if (plan.key.productId == InAppPurchase.PremiumSubscriptionPlan.sku) {
                             val isOwned = plan.value
                             view.presentPremiumPlan(if (isOwned) null else plan.key.subscriptionFormattedPrice?.formatPrice())
+                            userOwnsPlan = userOwnsPlan || isOwned
+                        } else if (plan.key.productId == InAppPurchase.StandardSubscriptionTrialPlan.sku) {
+                            val isOwned = plan.value
+                            view.presentTrialPlan(if (isOwned) null else plan.key.subscriptionFormattedPrice?.formatPrice())
                             userOwnsPlan = userOwnsPlan || isOwned
                         }
                     }
